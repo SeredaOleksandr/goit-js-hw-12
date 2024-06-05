@@ -1,35 +1,51 @@
 .loader {
-  width: 48px;
-  height: 48px;
-  display: none;
-  position: relative;
-  left: 50%;
-}
-.loader::after,
-.loader::before {
-  content: '';
-  box-sizing: border-box;
+  margin: 0 auto;
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 2px solid #000000;
+  position: relative;
+  animation: rotate 1s linear infinite;
+}
+.loader::before,
+.loader::after {
+  content: '';
+  box-sizing: border-box;
   position: absolute;
-  left: 50%;
-  top: 0;
-  animation: animloader 2s linear infinite;
+  inset: 0px;
+  border-radius: 50%;
+  border: 5px solid #000;
+  animation: prixClipFix 2s linear infinite;
 }
 .loader::after {
-  animation-delay: 1s;
+  border-color: #ff3d00;
+  animation: prixClipFix 2s linear infinite, rotate 0.5s linear infinite reverse;
+  inset: 6px;
 }
 
-@keyframes animloader {
+@keyframes rotate {
   0% {
-    transform: scale(0);
-    opacity: 1;
+    transform: rotate(0deg);
   }
   100% {
-    transform: scale(1);
-    opacity: 0;
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
   }
 }
 
@@ -60,7 +76,8 @@ input::placeholder {
   letter-spacing: 0.04em;
 }
 
-button {
+form button,
+.load-more {
   display: flex;
   padding: 8px 16px;
   justify-content: center;
@@ -74,6 +91,12 @@ button {
   font-weight: 500;
   line-height: 1.5;
   letter-spacing: 0.04em;
+  transition: background-color 250ms linear;
+}
+
+button:hover,
+button:focus {
+  background-color: #6c8cff;
 }
 
 img {
@@ -97,7 +120,6 @@ img {
 }
 
 .gallery div {
-  position: absolute;
   bottom: 0;
   left: 0;
   background-color: #fff;
