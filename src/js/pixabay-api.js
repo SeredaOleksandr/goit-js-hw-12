@@ -5,7 +5,7 @@ export const perPage = 15;
 const API_KEY = '44242951-779ddab31bb84492c2ee50b34';
 
 const userGallery = async (userSearch, myPage) => {
-  const response = await axios.get('https://pixabay.com/api/', {
+  const response = await axios.get('', {
     params: {
       key: API_KEY,
       q: userSearch,
